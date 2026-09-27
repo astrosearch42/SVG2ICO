@@ -1,4 +1,4 @@
-# SVG 2 ICO
+# SVG2ICO
 
 Application de bureau simple pour convertir un ou plusieurs fichiers SVG en fichiers ICO.
 
@@ -22,7 +22,7 @@ python -m pip install -r requirements.txt
 ## Lancer l'application
 
 ```powershell
-python svg_to_ico.py
+python SVG2ICO.py
 ```
 
 ## Creer l'executable Windows
@@ -30,9 +30,9 @@ python svg_to_ico.py
 Depuis la racine du projet, apres l'installation des dependances :
 
 ```powershell
-pyinstaller --noconfirm --clean --onefile --windowed --name SVG_2_ICO --icon icon\app_icon.ico --add-data "icon\app_icon.svg;icon" svg_to_ico.py
+.\build_exe.ps1
 ```
 
-L'executable sera genere dans `dist\SVG_2_ICO.exe`.
+L'executable sera genere dans `dist\SVG2ICO.exe`.
 
 L'option `--add-data` embarque le SVG utilise par l'icone de la fenetre. Le fichier ICO fourni a PyInstaller definit l'icone de l'executable Windows.

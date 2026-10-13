@@ -1,11 +1,12 @@
 $projectRoot = (Resolve-Path (Join-Path $PSScriptRoot "..")).Path
-$python = Join-Path $projectRoot ".venv\Scripts\python.exe"
 
-if (-not (Test-Path $python)) {
-    throw "The project virtual environment was not found at $python"
+if (-not (Get-Command uv -ErrorAction SilentlyContinue)) {
+    throw "uv is required to build SVG2ICO. Install it from https://docs.astral.sh/uv/"
 }
 
-& $python -m PyInstaller `
+Push-Location $projectRoot
+try {
+uv run python -m PyInstaller `
   --noconfirm `
   --clean `
   --onefile `
@@ -17,6 +18,10 @@ if (-not (Test-Path $python)) {
   --workpath (Join-Path $projectRoot "build") `
   --specpath $projectRoot `
   (Join-Path $projectRoot "src\svg2ico\SVG2ICO.py")
+}
+finally {
+    Pop-Location
+}
 
 if ($LASTEXITCODE -ne 0) {
     throw "PyInstaller failed with exit code $LASTEXITCODE"

@@ -1,0 +1,21 @@
+[project]
+name = "svg2ico"
+version = "0.1.0"
+description = "A Windows desktop application for converting SVG files to ICO icons"
+readme = "README.md"
+authors = [
+    { name = "astrosearch42 PC-Fixe", email = "bertrandm04@gmail.com" }
+]
+requires-python = ">=3.13"
+dependencies = [
+    "pillow>=12.3.0",
+    "pyinstaller>=6.22.3",
+    "pyside6>=6.12.0",
+]
+
+[project.scripts]
+svg2ico = "svg2ico:main"
+
+[build-system]
+requires = ["uv_build>=0.13.0,<0.14.0"]
+build-backend = "uv_build"

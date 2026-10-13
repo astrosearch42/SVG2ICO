@@ -5,7 +5,7 @@ import sys
 from pathlib import Path
 
 from PIL import Image
-from PySide6.QtCore import QByteArray, QBuffer, QIODevice, Qt
+from PySide6.QtCore import QBuffer, QByteArray, QIODevice, Qt
 from PySide6.QtGui import QIcon, QImage, QPainter
 from PySide6.QtSvg import QSvgRenderer
 from PySide6.QtWidgets import (
@@ -19,17 +19,20 @@ from PySide6.QtWidgets import (
     QWidget,
 )
 
-
 ICON_SIZES = (16, 24, 32, 48, 64, 128, 256)
 
 
 def resource_path(relative_path: str) -> Path:
     bundle_path = getattr(sys, "_MEIPASS", None)
-    base_path = Path(bundle_path) if bundle_path else Path(__file__).resolve().parent
+    base_path = (
+        Path(bundle_path)
+        if bundle_path
+        else Path(__file__).resolve().parents[2]
+    )
     return base_path / relative_path
 
 
-APP_ICON_PATH = resource_path("icon/app_icon.svg")
+APP_ICON_PATH = resource_path("icon/svg2ico.svg")
 
 
 def svg_to_image(svg_path: Path) -> Image.Image:
